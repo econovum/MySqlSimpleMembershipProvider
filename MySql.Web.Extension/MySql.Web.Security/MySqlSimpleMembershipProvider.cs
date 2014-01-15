@@ -612,7 +612,7 @@ namespace MySql.Web.Security
 
 		private void CreateUserRow(MySqlSecurityDbContext db, string userName, IDictionary<string, object> values)
 		{
-			var newUserProfile = new UserProfile
+			var newUserProfile = new MysqlUserProfile
 			{
 				UserName = userName,
 			};
@@ -621,7 +621,7 @@ namespace MySql.Web.Security
 			{
 				var type = Type.GetType(ConfigUtil.MySqlSecurityInheritedContextType, false, true);
 				var contextAssembly = Assembly.GetAssembly(type);
-				var userProfileExType = contextAssembly.GetTypes().FirstOrDefault(x => x.BaseType == typeof(MySql.Web.Security.UserProfile));
+				var userProfileExType = contextAssembly.GetTypes().FirstOrDefault(x => x.BaseType == typeof(MySql.Web.Security.MysqlUserProfile));
 
 				if (userProfileExType != null)
 				{
@@ -675,7 +675,7 @@ namespace MySql.Web.Security
 		// Not used but CreateUser direct to database
 		private void CreateUserRowByDatabase(MySqlSecurityDbContext db, string userName, IDictionary<string, object> values)
 		{
-			var newUserProfile = new UserProfile
+			var newUserProfile = new MysqlUserProfile
 			{
 				UserName = userName,
 			};

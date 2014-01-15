@@ -70,7 +70,7 @@ namespace MySql.Web.Security
 		/// </summary>
 		/// <value>The user profile.</value>
 		[ForeignKey("UserId")]
-		public virtual UserProfile UserProfile
+		public virtual MysqlUserProfile UserProfile
 		{
 			get;
 			set;

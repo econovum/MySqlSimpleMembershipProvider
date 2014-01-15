@@ -33,8 +33,8 @@ namespace MySql.Web.Security
 	/// <summary>
 	/// UserProfile Table Entity class
 	/// </summary>
-	[Table("UserProfile")]
-	public partial class UserProfile
+	[Table("MysqlUserProfile")]
+	public partial class MysqlUserProfile
 	{
 		/// <summary>
 		/// Gets or sets the user id.
