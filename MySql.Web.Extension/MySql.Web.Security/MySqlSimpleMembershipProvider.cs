@@ -392,7 +392,7 @@ namespace MySql.Web.Security
 
 		internal static int GetUserId(MySqlSecurityDbContext db, string userName)
 		{
-			var result = db.UserProfiles.FirstOrDefault(x => x.UserName == userName);
+			var result = db.MysqlUserProfiles.FirstOrDefault(x => x.UserName == userName);
 
 			if (result != null)
 				return result.UserId;
@@ -651,7 +651,7 @@ namespace MySql.Web.Security
 				}
 			}
 			else
-				db.UserProfiles.Add(newUserProfile);
+				db.MysqlUserProfiles.Add(newUserProfile);
 
 			int rows = db.SaveChanges();
 
@@ -683,12 +683,12 @@ namespace MySql.Web.Security
 
 			using (TransactionScope scope = new TransactionScope())
 			{
-				db.UserProfiles.Add(newUserProfile);
+				db.MysqlUserProfiles.Add(newUserProfile);
 				rows = db.SaveChanges();
 
 				if (values != null && values.Count > 0)
 				{
-					var user = db.UserProfiles
+					var user = db.MysqlUserProfiles
 						.OrderByDescending(x => x.UserName)
 						.First(x => x.UserName == userName);
 					StringBuilder sql = new StringBuilder("UPDATE UserProfile SET ");
@@ -964,9 +964,9 @@ namespace MySql.Web.Security
 					return false; // User not found
 				}
 
-				var user = db.UserProfiles.Single(x => x.UserId == userId);
+				var user = db.MysqlUserProfiles.Single(x => x.UserId == userId);
 
-				db.UserProfiles.Remove(user);
+				db.MysqlUserProfiles.Remove(user);
 
 				bool returnValue = (db.SaveChanges() == 1);
 
@@ -1483,7 +1483,7 @@ namespace MySql.Web.Security
 
 			using (var db = NewMySqlSecurityDbContext)
 			{
-				var user = db.UserProfiles.SingleOrDefault(x => x.UserId == userId);
+				var user = db.MysqlUserProfiles.SingleOrDefault(x => x.UserId == userId);
 
 				if (user != null)
 					return user.UserName;

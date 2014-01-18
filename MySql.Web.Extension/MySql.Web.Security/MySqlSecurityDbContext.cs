@@ -65,7 +65,7 @@ namespace MySql.Web.Security
 		/// Get or set UserProfiles
 		/// </summary>
 		/// <value>The user profiles.</value>
-		public DbSet<MysqlUserProfile> UserProfiles
+		public DbSet<MysqlUserProfile> MysqlUserProfiles
 		{
 			get;
 			set;
